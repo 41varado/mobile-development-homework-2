@@ -1,7 +1,6 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
 import './Home.css';
-import {Productos} from '../components/Products/index'
+import {Products} from '../components/Products/index'
 
 const Home: React.FC = () => {
   return (
@@ -17,7 +16,7 @@ const Home: React.FC = () => {
             <IonTitle size="large">Blank</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <Productos />
+        <Products />
       </IonContent>
     </IonPage>
   );
