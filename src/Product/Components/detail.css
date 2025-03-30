@@ -10,8 +10,17 @@
 }
 
 .button{
+    display: block;
     width: 75%;
     color: white;
-    display: block;
     margin: auto;
+    height: 5%;
+}
+
+.header{
+    height: 5%;
+}
+
+ProductCard{
+    height: 80%;
 }

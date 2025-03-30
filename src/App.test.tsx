@@ -3,8 +3,8 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import App from './App';
 import { vi } from 'vitest';
 import Home from './pages/Home';
-import { Products } from './components/Products';
-import { ProductDetail } from './components/Products/detail';
+import { Products } from './Product/Pages';
+import { ProductDetail } from './Product/Pages/detail';
 
 test('renders without crashing', () => {
   const { baseElement } = render(<App />);

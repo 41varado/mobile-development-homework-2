@@ -1,11 +1,11 @@
 import React ,{useState, useEffect} from 'react';
-import { IonContent, IonCol, IonRow, IonInfiniteScroll, IonInfiniteScrollContent, 
-    IonCard, IonCardHeader, IonCardTitle, 
+import { IonContent, IonCol, IonRow, IonInfiniteScroll, IonInfiniteScrollContent,
     IonButton,
     IonPage} from '@ionic/react'
-import { getProduct } from '../../constants/product';
-import Product from '../../data/Product';
+import { getProduct } from '../Services/product';
+import Product from '../../Model/Product';
 import { useHistory } from 'react-router-dom';
+import IndexProductCard from '../Components/indexProductCard';
 
 export const Products = () => {
     const [products, setProducts] = useState<Product[]>([]);
@@ -37,13 +37,9 @@ export const Products = () => {
             <IonContent>
                 <IonRow>
                     {productsAvailable.map((product) => (
-                        <IonCol size='6' sizeSm='4' sizeXl='4' key={product.id}>
-                            <IonCard>
-                                <img alt='imagen del producto' src={product.image}/>
-                                <IonCardHeader>
-                                    <IonCardTitle>{product.title}</IonCardTitle>
-                                </IonCardHeader>
-                            </IonCard>
+                        <IonCol size='6' sizeSm='4' sizeXl='4' key={product.id} className='Product'>
+                            <IndexProductCard title={product.title} image={product.image} category={product.category} 
+                            description={product.description} id={product.id} price={product.price} rating={product.rating}/>
                             <IonButton expand='full' onClick={() => handleRedirect(product.id)}>Ver Detalle</IonButton>
                         </IonCol>
                     ))}
