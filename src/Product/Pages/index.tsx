@@ -33,8 +33,7 @@ export const Products = () => {
     }
 
     return (
-        <IonPage>
-            <IonContent>
+<IonContent>
                 <IonRow>
                     {productsAvailable.map((product) => (
                         <IonCol size='6' sizeSm='4' sizeXl='4' key={product.id} className='Product'>
@@ -59,6 +58,5 @@ export const Products = () => {
                     <IonInfiniteScrollContent loadingText="Please wait..." loadingSpinner="bubbles"></IonInfiniteScrollContent>
                 </IonInfiniteScroll>
             </IonContent>
-        </IonPage>
       );
 }

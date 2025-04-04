@@ -2,6 +2,10 @@ import { Redirect, Route } from 'react-router-dom';
 import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Home from './pages/Home';
+import { ProductDetail } from './Product/Pages/detail';
+import Login from './Login/Pages/';
+import NotAllowed from './NotAllowed';
+import Security from './Router/Security';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -32,24 +36,44 @@ import '@ionic/react/css/palettes/dark.system.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import { ProductDetail } from './Product/Pages/detail';
+import { useState } from 'react';
+import User from './Model/User';
 
 setupIonicReact();
 
-const App: React.FC = () => (
-  <IonApp>
+const App: React.FC = () => {
+  const [user, setUser] = useState<User | undefined>();
+
+  const userLogin = (user: User) => {
+    setUser(user);
+    console.log(user);
+  }
+  return (
+    <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
-        <Route exact path="/home">
-          <Home />
+
+        <Security exact allowRoles={["user", "admin"]} 
+          user={user} path={'/home'} component={Home} />
+
+        <Security exact allowRoles={["user", "admin"]}
+          user={user} path={'/'} component={Home}/>
+
+        <Route exact path={'/'}>
+          <Redirect to={'/home'} />
         </Route>
-        <Route exact path="/">
-          <Redirect to="/home" />
+
+        <Security exact allowRoles={["admin"]}
+          user={user} path={'/detail/:id'} component={ProductDetail} />
+
+        <Route exact path={'/login'}>
+          <Login login={userLogin}/>
         </Route>
-        <Route exact path="/detail/:id" component={ProductDetail} />
+        <Route exact path="/notallowed" component={NotAllowed} />
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
-);
+  )
+};
 
 export default App;
